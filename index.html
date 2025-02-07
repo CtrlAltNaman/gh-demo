@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Be My Valentine?</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            background-color: #ffe6e6;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        img {
+            width: 300px;
+            border-radius: 10px;
+        }
+        .buttons {
+            margin-top: 20px;
+        }
+        .btn {
+            padding: 10px 20px;
+            font-size: 18px;
+            margin: 10px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+        }
+        .yes-btn {
+            background-color: #ff66b2;
+            color: white;
+        }
+        .no-btn {
+            background-color: #808080;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="question-container">
+        <h1>Will you be my Valentine MOON? ❤️</h1>
+        <img id="gif" src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExYzR1dzA1ZGdsZjNocDh5bnhwY3h1OTc4bXphdWFqZGl2MHJ3ejVmciZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/0hbeNqYztsiiWyYmLG/giphy.gif" alt="Cute GIF">
+        <div class="buttons">
+            <button class="btn yes-btn" id="yes-btn" onclick="yesResponse()">Yes</button>
+            <button class="btn no-btn" id="no-btn" onclick="noResponse()">No</button>
+        </div>
+    </div>
+    
+    <script>
+        let noCount = 0;
+        const maxNoClicks = 10;
+        const noMessages = [
+            "Are you sure? 😢",
+            "Please don't say no! 🥺",
+            "Think again, piggy please? 🥰",
+            "I'm gonna cry! pokkie 😭",
+            "pantua kilaunga..😞",
+            "biriyani bhi khilaunga..😔",
+            "You love me, right? 😏",
+            "kinderjoy bhi dilaunga 💔",
+            "Come on, you know you wanna say YES! 😘",
+            "Okay, now you HAVE to say yes! 😆"
+        ];
+        
+        function yesResponse() {
+            document.body.innerHTML = `
+                <div class="container">
+                    <h1>Yay! You are my Valentine! NOW LETS MEET EACH AND HAVE SOME FUN  ❤️🥰</h1>
+                    <img src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExdjd6dXp6NmZhYnhsbmJjcXQ5N3pkdHdnaXYzbTVib3JsYWZoc25vcCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/qKQQUKSSbWBkO2V3KX/giphy.gif" alt="Happy GIF">
+                    <p>yesMessage</p>
+                </div>
+            `;
+        }
+        
+        function noResponse() {
+            if (noCount < maxNoClicks) {
+                let yesBtn = document.getElementById("yes-btn");
+                let noBtn = document.getElementById("no-btn");
+                
+                yesBtn.style.fontSize = `${18 + noCount * 5}px`;
+                noBtn.style.fontSize = `${18 - noCount * 2}px`;
+                noBtn.innerText = noMessages[noCount];
+                
+                noCount++;
+            } else {
+                document.getElementById("no-btn").style.display = "none";
+                document.getElementById("yes-btn").style.width = "100vw";
+                document.getElementById("yes-btn").style.height = "100vh";
+                document.getElementById("yes-btn").style.fontSize = "40px";
+                document.getElementById("yes-btn").innerText = "YES, YOU HAVE TO SAY YES! ❤️";
+            }
+        }
+    </script>
+</body>
+</html>
